@@ -55,3 +55,4 @@ nosetests.xml
 .pydevproject
 .svn
 .idea
+/venv/
