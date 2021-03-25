@@ -1,31 +1,83 @@
 # Going to try and use this to change to python3, I expect problems, but alas, it's a start
 # https://docs.python.org/3/library/2to3.html
-# The following are the requirements for running the Python2.7 version of XDM
-cherrypy==3.2.2
-babel==1.3
-python-dateutil
-guessit==0.6
+
 # Was getting the following error:
 # error: compiling 'C:\CLI\Python27\lib\site-packages\jinja2\asyncsupport.py' failed
 #     SyntaxError: invalid syntax (asyncsupport.py, line 22)
 # So I downgraded jinja2 to the version previous to XDMs lastest release date.
+# Decided to make a virtual env with just the libraries at their current versions as of the last release of XDM
+
 # XDM = Aug 16, 2015
 # https://github.com/lad1337/XDM/releases/tag/0.5.19
+
+# The following are the requirements for running the Python2.7 version of XDM
+
+
+babel==1.3
+# Required originally by XDM
+cherrypy==3.2.2
+
+# I had to remove this file? M:\Projects\XDM\venv\Lib\site-packages\lazy_object_proxy\utils_py3.py
+# It was calling async which a py3 thing
+
+# Required originally by XDM
+guessit==0.6
+# Required originally by XDM
+
+jinja2==2.8
 # jinja2.8 = Jul 26 2015
 # https://pypi.org/project/Jinja2/#history
-jinja2==2.8
-jsonrpclib
-pylint
-pytz
-requests
+
+jsonrpclib==0.1.3
+
+mock==1.3.0
+
 peewee==2.0.0
-sh
-six
-pydes==2.0.0
-mock
-# This is needed to pip install py2exe for python2.7 these days
+# Required originally by XDM
+
+py2exe-py2==0.6.9
+# Wasn't in requirements before, but in order to run setup.py on Windows you will need py2exe
+# You call this to pip install py2exe for python2.7 these days
 # Reference:
 # https://stackoverflow.com/questions/23734172/install-py2exe-for-python-2-7-over-pip-this-package-requires-python-3-3-or-late/23735000
-# How to call pip to install in python 2 specifically
+
+# PS: How to call pip to install in python2 specifically:
 # https://stackoverflow.com/questions/26266437/how-to-use-python2-7-pip-instead-of-default-pip
-py2exe-py2
+
+pydes==2.0.1
+
+pylint==1.4.4
+
+python-dateutil==2.4.2
+
+pytz==2015.6
+
+requests==2.7.0
+
+# sh==1.11 # Can't install UNIX only. (Linux and OSX)
+sh==1.12.0 # Does support windows, but was released after the last release of XDM
+
+six==1.9.0
+
+
+
+# Uses these according to the docs
+# https://xdm.readthedocs.io/en/latest/
+async==0.6.2
+# Newest version, deprecated. Author says to use something else instead
+# pretty sure there is an async built into Python3 which would cause issues anyways
+
+
+
+smmap==0.9.0
+# Jan 7, 2015
+
+profilehooks==1.8.0
+# Mar 25, 2015
+
+feedparser==5.2.1
+# Jul 23, 2015
+
+# According to setup.py
+# The following modules appear to be missing
+# ['Carbon', 'Carbon.Files', 'Cheetah._namemapper', 'ElementC14N', 'IPython', 'IPython.core.pylabtools', 'IPython.utils.signatures', 'Image', 'IronPython.Runtime.Exceptions', 'Levenshtein', 'MySQLdb', 'Numeric', 'OpenSSL', 'OpenSSL.SSL', 'OpenSSL._util', 'OpenSSL.crypto', 'PyQt4.QtCore', 'PyQt4.QtGui', 'PyQt5.QtCore', 'PyQt5.QtGui', 'PyQt5.QtWidgets', 'PySide.QtCore', 'PySide.QtGui', 'PySide2.QtCore', 'PySide2.QtGui', 'Stemmer', '__pypy__', '__pypy__.builders', '__svn_version__', '_cmsgpack', '_curses', '_dummy_thread', '_frozen_importlib', '_frozen_importlib_external', '_imp', '_manylinux', '_next_gen', '_pypy_irc_topic', '_scproxy', '_structseq', '_sysconfigdata', '_systemrestart', '_thread', '_trie.Trie', '_wrappers', 'astroid.inspector', 'astroid.utils', 'asyncio', 'bcrypt', 'builtins', 'cbook.STEP_LOOKUP_MAP', 'cbook._InstanceMethodPickler', 'cbook._to_unmasked_float_array', 'cbook.is_math_text', 'cbook.is_numlike', 'cbook.iterable', 'cbook.ls_mapper', 'cbook.ls_mapper_r', 'cbook.maxdict', 'cbook.simple_linear_interpolation', 'cffi._pycparser', 'cjson', 'clr', 'code_generators.genapi', 'code_generators.numpy_api', 'collections.abc', 'com.sun', 'com.sun.jna', 'com.sun.jna.platform', 'compat.long', 'contracts', 'copyreg', 'core.abs', 'core.max', 'core.min', 'core.round', 'cryptography.x509.UnsupportedExtension', 'ctags', 'distutils.ccompiler', 'distutils.cmd', 'distutils.command', 'distutils.command.bdist', 'distutils.command.bdist_rpm', 'distutils.command.build', 'distutils.command.build_clib', 'distutils.command.build_ext', 'distutils.command.build_py', 'distutils.command.build_scripts', 'distutils.command.config', 'distutils.command.install', 'distutils.command.install_data', 'distutils.command.install_headers', 'distutils.command.install_scripts', 'distutils.command.sdist', 'distutils.core', 'distutils.cygwinccompiler', 'distutils.debug', 'distutils.dep_util', 'distutils.dir_util', 'distutils.dist', 'distutils.errors', 'distutils.extension', 'distutils.fancy_getopt', 'distutils.file_util', 'distutils.filelist', 'distutils.log', 'distutils.msvc9compiler', 'distutils.msvccompiler', 'distutils.spawn', 'distutils.sysconfig', 'distutils.unixccompiler', 'distutils.util', 'distutils.version', 'django.utils.six.moves.http_client', 'django.utils.six.moves.urllib.parse', 'ds.sys.Unspecified', 'dummy.Process', 'email.Header', 'email.headerregistry', 'eventlet.greenthread', 'extensions.Extension', 'extern.six', 'faulthandler', 'fcompiler.FCompiler', 'fcompiler.has_f90_header', 'fcompiler.is_f_file', 'flup.server.cgi', 'flup.server.fcgi', 'flup.server.scgi', 'genapi', 'genshi.core', 'gevent', 'gi.repository', 'gobject', 'greenlet', 'html.entities', 'html.parser', 'http.client', 'http.cookiejar', 'http.cookies', 'http.server', 'hypothesis', 'hypothesis.strategies', 'iconv_codec', 'importlib.machinery', 'importlib.reload', 'importlib.resources', 'importlib.util', 'itimer', 'java', 'jinja2.debugrenderer', 'json.JSONDecodeError', 'lzma', 'matplotlib.axes.Axes', 'matplotlib.axes.Subplot', 'matplotlib.axes.SubplotBase', 'matplotlib.axes.subplot_class_factory', 'matplotlib.tri.Triangulation', 'memcache', 'mpl_toolkits.natgrid', 'multiprocessing.spawn', 'mx', 'ndg.httpsclient.ssl_peer_verification', 'ndg.httpsclient.subj_alt_name', 'netbios', 'numarray', 'numpy._build_utils.apple_accelerate', 'numpy.amax', 'numpy.amin', 'numpy.array', 'numpy.bool_', 'numpy.compat.asbytes', 'numpy.compat.asbytes_nested', 'numpy.compat.asstr', 'numpy.compat.asunicode', 'numpy.compat.basestring', 'numpy.compat.bytes', 'numpy.compat.contextlib_nullcontext', 'numpy.compat.integer_types', 'numpy.compat.is_pathlib_path', 'numpy.compat.isfileobj', 'numpy.compat.long', 'numpy.compat.npy_load_module', 'numpy.compat.open_latin1', 'numpy.compat.os_PathLike', 'numpy.compat.os_fspath', 'numpy.compat.unicode', 'numpy.core.Inf', 'numpy.core.absolute', 'numpy.core.add', 'numpy.core.all', 'numpy.core.amax', 'numpy.core.amin', 'numpy.core.arange', 'numpy.core.array', 'numpy.core.array2string', 'numpy.core.array_repr', 'numpy.core.asanyarray', 'numpy.core.asarray', 'numpy.core.atleast_1d', 'numpy.core.atleast_2d', 'numpy.core.atleast_3d', 'numpy.core.bitwise_and', 'numpy.core.bitwise_or', 'numpy.core.bitwise_xor', 'numpy.core.bool_', 'numpy.core.cdouble', 'numpy.core.complexfloating', 'numpy.core.conjugate', 'numpy.core.count_nonzero', 'numpy.core.csingle', 'numpy.core.divide', 'numpy.core.dot', 'numpy.core.double', 'numpy.core.dtype', 'numpy.core.empty', 'numpy.core.empty_like', 'numpy.core.equal', 'numpy.core.errstate', 'numpy.core.fastCopyAndTranspose', 'numpy.core.finfo', 'numpy.core.float32', 'numpy.core.float64', 'numpy.core.float_', 'numpy.core.geterrobj', 'numpy.core.greater', 'numpy.core.greater_equal', 'numpy.core.hstack', 'numpy.core.iinfo', 'numpy.core.inexact', 'numpy.core.inf', 'numpy.core.intc', 'numpy.core.integer', 'numpy.core.intp', 'numpy.core.invert', 'numpy.core.isfinite', 'numpy.core.isinf', 'numpy.core.isnan', 'numpy.core.isnat', 'numpy.core.isscalar', 'numpy.core.left_shift', 'numpy.core.less', 'numpy.core.less_equal', 'numpy.core.linspace', 'numpy.core.matmul', 'numpy.core.moveaxis', 'numpy.core.multiply', 'numpy.core.ndarray', 'numpy.core.newaxis', 'numpy.core.not_equal', 'numpy.core.number', 'numpy.core.object_', 'numpy.core.ones', 'numpy.core.power', 'numpy.core.product', 'numpy.core.remainder', 'numpy.core.reshape', 'numpy.core.result_type', 'numpy.core.right_shift', 'numpy.core.roll', 'numpy.core.shape', 'numpy.core.signbit', 'numpy.core.sin', 'numpy.core.single', 'numpy.core.sqrt', 'numpy.core.subtract', 'numpy.core.sum', 'numpy.core.swapaxes', 'numpy.core.take', 'numpy.core.transpose', 'numpy.core.ufunc', 'numpy.core.vstack', 'numpy.core.zeros', 'numpy.deprecate', 'numpy.dtype', 'numpy.expand_dims', 'numpy.eye', 'numpy.frombuffer', 'numpy.histogramdd', 'numpy.inf', 'numpy.integer', 'numpy.intp', 'numpy.iscomplexobj', 'numpy.isinf', 'numpy.lib.i0', 'numpy.lib.imag', 'numpy.lib.iscomplexobj', 'numpy.lib.real', 'numpy.linalg.eigvals', 'numpy.linalg.inv', 'numpy.linalg.lstsq', 'numpy.linalg.matrix_power', 'numpy.ma.MAError', 'numpy.ma.MaskedArray', 'numpy.ma.filled', 'numpy.ma.getdata', 'numpy.ma.getmaskarray', 'numpy.ma.make_mask_descr', 'numpy.ma.masked', 'numpy.ma.masked_array', 'numpy.ma.nomask', 'numpy.ndarray', 'numpy.recarray', 'numpy.testing.jiffies', 'numpy.testing.memusage', 'numpy.testing.suppress_warnings', 'numpy_api', 'numpy_distutils', 'numpy_distutils.command.build_flib', 'numpy_distutils.command.cpuinfo', 'numpy_distutils.cpuinfo', 'numpy_distutils.fcompiler', 'org.python.modules.posix.PosixModule', 'packages.six.moves', 'packages.six.moves.http_client', 'packages.six.moves.urllib.parse', 'packages.ssl_match_hostname.CertificateError', 'packages.ssl_match_hostname.match_hostname', 'packages.urllib3.util.Timeout', 'packages.urllib3.util.parse_url', 'pickle5', 'pip._vendor.requests.packages.urllib3.response', 'pip._vendor.requests.packages.urllib3.util', 'pip._vendor.six.moves.urllib', 'pip._vendor.six.moves.urllib.parse', 'pkg_resources.extern.appdirs', 'pkg_resources.extern.packaging', 'pkg_resources.extern.six', 'pkg_resources.extern.six.moves', 'pudb', 'pyasn1.codec.der', 'pyasn1.type', 'pygments.formatters.HtmlFormatter', 'pygments.formatters.LatexFormatter', 'pygments.lexers.CLexer', 'pygments.lexers.Python3Lexer', 'pygments.lexers.PythonConsoleLexer', 'pygments.lexers.PythonLexer', 'pygments.lexers.RstLexer', 'pygments.lexers.TextLexer', 'pyinotify', 'pytest', 'pywintypes', 'queue', 'reno', 'repoze.lru', 'reprlib', 'resource', 'scipy', 'service_identity', 'service_identity.pyopenssl', 'setuptools.extern.ordered_set', 'setuptools.extern.packaging', 'setuptools.extern.packaging.specifiers', 'setuptools.extern.packaging.tags', 'setuptools.extern.packaging.utils', 'setuptools.extern.packaging.version', 'setuptools.extern.six', 'setuptools.extern.six.moves', 'setuptools.extern.six.moves.configparser', 'six.moves.tkinter', 'six.moves.tkinter_tkfiledialog', 'six.moves.urllib', 'six.moves.urllib.parse', 'six.moves.urllib.request', 'socks', 'sphinx.domain.std', 'sphinx.sphinx', 'sphinx.utils.tags', 'sphinx_rtd_theme', 'sphinxcontrib.websupport.utils', 'subprocess32', 'testing.Tester', 'testscenarios', 'toml', 'tornado', 'tornado.ioloop', 'tornado.template', 'tornado.web', 'tornado.websocket', 'treebuilders.getTreeBuilder', 'treewalkers.getTreeWalker', 'tri.LinearTriInterpolator', 'tri.Triangulation', 'twisted.python._sendmsg', 'twistedsupport.AsynchronousDeferredRunTest', 'twistedsupport.AsynchronousDeferredRunTestForBrokenTwisted', 'twistedsupport.CaptureTwistedLogs', 'twistedsupport.SynchronousDeferredRunTest', 'twistedsupport.assert_fails_with', 'twistedsupport.flush_logged_errors', 'unittest.mock', 'urllib.error', 'urllib.parse', 'urllib.request', 'util.SKIPPABLE_HEADERS', 'util.SKIP_HEADER', 'utils_py3', 'win32api', 'win32com.shell', 'win32con', 'win32console', 'win32event', 'win32evtlog', 'win32evtlogutil', 'win32file', 'win32gui', 'win32pdh', 'win32pipe', 'win32process', 'win32security', 'win32service', 'win32serviceutil', 'win32wnet', 'winreg', 'wx', 'xmlrpc.client', 'zope.interface', 'zope.interface.adapter']
